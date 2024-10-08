@@ -18,12 +18,11 @@
 
 package the.bytecode.club.bytecodeviewer.gui.resourceviewer.viewer;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import the.bytecode.club.bytecodeviewer.Configuration;
-import the.bytecode.club.bytecodeviewer.gui.resourceviewer.TabbedPane;
 import the.bytecode.club.bytecodeviewer.resources.Resource;
 import the.bytecode.club.bytecodeviewer.util.MiscUtils;
+
+import javax.swing.*;
 
 /**
  * Represents an opened tab
@@ -34,25 +33,27 @@ import the.bytecode.club.bytecodeviewer.util.MiscUtils;
 public abstract class ResourceViewer extends JPanel
 {
     public final Resource resource;
-    public TabbedPane tabbedPane;
-    
-    protected ResourceViewer(Resource resource) {this.resource = resource;}
-    
+
+    protected ResourceViewer(Resource resource)
+    {
+        this.resource = resource;
+    }
+
     /**
      * Returns the tab name
      */
     public String getTabName()
     {
         String tabName = resource.name;
-        
+
         if (Configuration.simplifiedTabNames)
             tabName = MiscUtils.getChildFromPath(tabName);
         if (Configuration.displayParentInTab)
             tabName = resource.container.name + ">" + tabName;
-        
+
         return tabName;
     }
-    
+
     /**
      * Returns the resource bytes from the resource container
      */
@@ -60,17 +61,18 @@ public abstract class ResourceViewer extends JPanel
     {
         return resource.getResourceBytes();
     }
-    
-    
+
+
     public abstract void refresh(JButton button);
-    
+
     /**
      * Updates the tab's title
      */
     public void refreshTitle()
     {
-        if(tabbedPane != null)
-            tabbedPane.label.setText(getTabName());
+        //TODO
+        //if(tabbedPane != null)
+        //    tabbedPane.label.setText(getTabName());
     }
 
     private static final long serialVersionUID = -2965538493489119191L;
